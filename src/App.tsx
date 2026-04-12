@@ -1,120 +1,76 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { ArrowRight, FlaskConical, Layers3, Search } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <main className="from-background via-background to-muted/30 text-foreground min-h-screen bg-gradient-to-b">
+      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center gap-12 px-6 py-16 md:px-10">
+        <div className="max-w-3xl space-y-6">
+          <div className="border-border/70 bg-background/80 text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.2em] uppercase backdrop-blur">
+            <Layers3 className="size-3.5" />
+            MycoAI Retrieval Platform
+          </div>
 
-      <div className="ticks"></div>
+          <div className="space-y-4">
+            <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-balance md:text-6xl">
+              Scientist-facing search and indexing for fungal retrieval
+              workflows.
+            </h1>
+            <p className="text-muted-foreground max-w-2xl text-base leading-7 md:text-lg">
+              This frontend is the operator console for dataset management,
+              index status, and retrieval queries backed by the MycoAI platform.
+            </p>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
+          <div className="flex flex-wrap gap-3">
+            <Button size="lg" className="gap-2">
+              Open dashboard
+              <ArrowRight className="size-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2">
+              View API contract
+              <Search className="size-4" />
+            </Button>
+          </div>
         </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
+              <Search className="size-5" />
+            </div>
+            <h2 className="mb-2 text-lg font-semibold">Query Console</h2>
+            <p className="text-muted-foreground text-sm leading-6">
+              Run species retrieval queries against the shared vector index with
+              a scientist-friendly workflow.
+            </p>
+          </div>
+
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
+              <FlaskConical className="size-5" />
+            </div>
+            <h2 className="mb-2 text-lg font-semibold">Dataset Operations</h2>
+            <p className="text-muted-foreground text-sm leading-6">
+              Manage uploads, curation steps, and experiment-facing metadata for
+              the fungal retrieval stack.
+            </p>
+          </div>
+
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
+              <Layers3 className="size-5" />
+            </div>
+            <h2 className="mb-2 text-lg font-semibold">Index Visibility</h2>
+            <p className="text-muted-foreground text-sm leading-6">
+              Surface collection health, model versions, and retrieval artifacts
+              from the shared monorepo workflows.
+            </p>
+          </div>
         </div>
       </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    </main>
   )
 }
 
