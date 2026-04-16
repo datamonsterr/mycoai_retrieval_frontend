@@ -1,6 +1,8 @@
 # MycoAI Retrieval Frontend
 
-React frontend for scientist-facing retrieval, dataset, and indexing workflows in the MycoAI platform.
+React frontend for scientist-facing retrieval, dataset, and indexing workflows
+in the MycoAI platform, backed by outputs from the `retrieval` and
+`kmeans_segmentation` experiment pipelines.
 
 ## Stack
 
@@ -11,17 +13,18 @@ React frontend for scientist-facing retrieval, dataset, and indexing workflows i
 - TypeScript
 - ESLint
 - Prettier
+- pnpm
 
 ## Commands
 
 ```bash
-npm install
-npm run dev
-npm run lint
-npm run format
-npm run format:check
-npm run typecheck
-npm run build
+pnpm install
+pnpm dev
+pnpm lint
+pnpm format
+pnpm run format:check
+pnpm typecheck
+pnpm build
 ```
 
 ## UI Setup
