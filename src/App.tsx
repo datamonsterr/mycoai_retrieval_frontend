@@ -1,8 +1,25 @@
-import { ArrowRight, FlaskConical, Layers3, Search } from 'lucide-react'
+import { useState } from 'react'
+import { ArrowRight, CheckCircle, FlaskConical, Layers3, MessageSquare, Search } from 'lucide-react'
 
+import type { Page } from '@/types/feedback'
 import { Button } from '@/components/ui/button'
+import FeedbackForm from '@/pages/FeedbackForm'
+import MyFeedback from '@/pages/MyFeedback'
+import FeedbackInbox from '@/pages/FeedbackInbox'
+
+const PAGES: { id: Page; label: string; icon: React.ReactNode }[] = [
+  { id: 'submit', label: 'Submit Feedback', icon: <MessageSquare className="size-4" /> },
+  { id: 'my-feedback', label: 'My Feedback', icon: <CheckCircle className="size-4" /> },
+  { id: 'inbox', label: 'Feedback Inbox', icon: <Layers3 className="size-4" /> },
+]
 
 function App() {
+  const [page, setPage] = useState<Page>('home')
+
+  if (page === 'submit') return <FeedbackForm setPage={setPage} />
+  if (page === 'my-feedback') return <MyFeedback setPage={setPage} />
+  if (page === 'inbox') return <FeedbackInbox setPage={setPage} />
+
   return (
     <main className="from-background via-background to-muted/30 text-foreground min-h-screen bg-gradient-to-b">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center gap-12 px-6 py-16 md:px-10">
@@ -24,13 +41,17 @@ function App() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="gap-2">
-              Open dashboard
+            <Button size="lg" className="gap-2" onClick={() => setPage('submit')}>
+              Report Incorrect Prediction
               <ArrowRight className="size-4" />
             </Button>
-            <Button size="lg" variant="outline" className="gap-2">
-              View API contract
-              <Search className="size-4" />
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => setPage('inbox')}>
+              Feedback Inbox
+              <MessageSquare className="size-4" />
+            </Button>
+            <Button size="lg" variant="outline" className="gap-2" onClick={() => setPage('my-feedback')}>
+              My Feedback
+              <CheckCircle className="size-4" />
             </Button>
           </div>
         </div>
@@ -67,6 +88,27 @@ function App() {
               Surface collection health, model versions, and retrieval artifacts
               from the shared monorepo workflows.
             </p>
+          </div>
+        </div>
+
+        <div className="border-border/70 bg-card rounded-3xl border p-8 shadow-sm">
+          <h2 className="mb-4 text-lg font-semibold">Feedback Pipeline</h2>
+          <p className="text-muted-foreground mb-6 text-sm leading-6">
+            Users can report incorrect species predictions. Data owners review,
+            accept, or reject feedback. Accepted feedback feeds into model improvement.
+          </p>
+          <div className="flex flex-wrap gap-3">
+            {PAGES.map((p) => (
+              <Button
+                key={p.id}
+                variant="outline"
+                className="gap-2"
+                onClick={() => setPage(p.id)}
+              >
+                {p.icon}
+                {p.label}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
