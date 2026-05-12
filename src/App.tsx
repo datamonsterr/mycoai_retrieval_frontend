@@ -1,4 +1,10 @@
-import { ArrowRight, FlaskConical, Layers3, Search, ShieldCheck } from 'lucide-react'
+import {
+  ArrowRight,
+  FlaskConical,
+  Layers3,
+  Search,
+  ShieldCheck,
+} from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -53,7 +59,9 @@ function getCapabilities(role: Role): Capability[] {
 }
 
 function App() {
-  const [profile, setProfile] = useState<UserProfile | null>(roleProfiles.normal_user)
+  const [profile, setProfile] = useState<UserProfile | null>(
+    roleProfiles.normal_user,
+  )
   const capabilities = profile ? getCapabilities(profile.role) : []
   const canManageData = profile?.role === 'data_owner'
 
@@ -69,11 +77,13 @@ function App() {
 
             <div className="space-y-4">
               <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-balance md:text-6xl">
-                Scientist-facing search and indexing for fungal retrieval workflows.
+                Scientist-facing search and indexing for fungal retrieval
+                workflows.
               </h1>
               <p className="text-muted-foreground max-w-2xl text-base leading-7 md:text-lg">
-                This frontend is the operator console for dataset management, index
-                status, and retrieval queries backed by the MycoAI platform.
+                This frontend is the operator console for dataset management,
+                index status, and retrieval queries backed by the MycoAI
+                platform.
               </p>
             </div>
 
@@ -99,7 +109,9 @@ function App() {
                   {profile ? profile.name : 'Signed out'}
                 </h2>
                 {profile ? (
-                  <p className="text-muted-foreground text-sm">{profile.email}</p>
+                  <p className="text-muted-foreground text-sm">
+                    {profile.email}
+                  </p>
                 ) : null}
               </div>
               <div className="bg-primary/10 text-primary rounded-2xl p-3">
@@ -121,7 +133,9 @@ function App() {
             <div className="flex flex-wrap gap-2">
               <Button
                 type="button"
-                variant={profile?.role === 'normal_user' ? 'default' : 'outline'}
+                variant={
+                  profile?.role === 'normal_user' ? 'default' : 'outline'
+                }
                 onClick={() => setProfile(roleProfiles.normal_user)}
               >
                 Login normal
@@ -133,7 +147,11 @@ function App() {
               >
                 Login owner
               </Button>
-              <Button type="button" variant="ghost" onClick={() => setProfile(null)}>
+              <Button
+                type="button"
+                variant="ghost"
+                onClick={() => setProfile(null)}
+              >
                 Logout
               </Button>
             </div>
@@ -147,8 +165,8 @@ function App() {
             </div>
             <h2 className="mb-2 text-lg font-semibold">Query Console</h2>
             <p className="text-muted-foreground text-sm leading-6">
-              Run species retrieval queries against the shared vector index with a
-              scientist-friendly workflow.
+              Run species retrieval queries against the shared vector index with
+              a scientist-friendly workflow.
             </p>
           </div>
 
@@ -170,8 +188,8 @@ function App() {
             </div>
             <h2 className="mb-2 text-lg font-semibold">Index Visibility</h2>
             <p className="text-muted-foreground text-sm leading-6">
-              Surface collection health, model versions, and retrieval artifacts from
-              the shared monorepo workflows.
+              Surface collection health, model versions, and retrieval artifacts
+              from the shared monorepo workflows.
             </p>
           </div>
         </div>
@@ -183,7 +201,9 @@ function App() {
                 <p className="text-muted-foreground text-xs font-medium tracking-[0.2em] uppercase">
                   Permissions
                 </p>
-                <h2 className="mt-2 text-2xl font-semibold">Role-based actions</h2>
+                <h2 className="mt-2 text-2xl font-semibold">
+                  Role-based actions
+                </h2>
               </div>
               {canManageData ? (
                 <Button type="button" className="gap-2">
@@ -199,7 +219,9 @@ function App() {
                   key={capability.label}
                   className="border-border/70 flex items-center justify-between gap-4 rounded-2xl border p-4"
                 >
-                  <span className="text-sm font-medium">{capability.label}</span>
+                  <span className="text-sm font-medium">
+                    {capability.label}
+                  </span>
                   <span
                     className={
                       capability.allowed
