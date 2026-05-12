@@ -20,7 +20,12 @@ import { Navigate, NavLink, Route, Routes } from 'react-router-dom'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 
-type TrainingStatus = 'pending' | 'running' | 'completed' | 'failed' | 'cancelled'
+type TrainingStatus =
+  | 'pending'
+  | 'running'
+  | 'completed'
+  | 'failed'
+  | 'cancelled'
 type TrainingStage =
   | 'preparing'
   | 'extracting'
@@ -149,15 +154,15 @@ function App() {
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
-    <main className="from-background via-background to-muted/25 min-h-screen bg-gradient-to-b text-foreground">
+    <main className="from-background via-background to-muted/25 text-foreground min-h-screen bg-gradient-to-b">
       <header className="border-border/70 bg-background/80 sticky top-0 z-10 border-b backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
           <div>
-            <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.25em]">
+            <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold tracking-[0.25em] uppercase">
               <Layers3 className="size-3.5" />
               MycoAI Retrieval Platform
             </div>
-            <p className="text-sm text-wrap text-foreground font-medium">
+            <p className="text-foreground text-sm font-medium text-wrap">
               Training observation and deployment console
             </p>
           </div>
@@ -191,7 +196,11 @@ function NavItem({ to, label }: { to: string; label: string }) {
 }
 
 function PageFrame({ children }: { children: React.ReactNode }) {
-  return <section className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10">{children}</section>
+  return (
+    <section className="mx-auto w-full max-w-7xl px-6 py-10 md:px-10">
+      {children}
+    </section>
+  )
 }
 
 function TrainingPage() {
@@ -205,7 +214,7 @@ function TrainingPage() {
             <section className="border-border/70 bg-card rounded-3xl border p-8 shadow-sm">
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div className="space-y-4">
-                  <div className="text-muted-foreground inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-emerald-700 dark:text-emerald-300">
+                  <div className="text-muted-foreground inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1 text-xs font-semibold tracking-[0.22em] text-emerald-700 uppercase dark:text-emerald-300">
                     <ShieldCheck className="size-3.5" />
                     Training status
                   </div>
@@ -214,30 +223,60 @@ function TrainingPage() {
                       {trainingState.model}
                     </h1>
                     <p className="text-muted-foreground max-w-2xl text-base leading-7 md:text-lg">
-                      Last training {trainingState.lastTrainingDate}. Current model
-                      ready for review, staged deployment, and rollback.
+                      Last training {trainingState.lastTrainingDate}. Current
+                      model ready for review, staged deployment, and rollback.
                     </p>
                   </div>
                 </div>
                 <div className="bg-muted/40 rounded-2xl p-4 text-right">
-                  <div className="text-muted-foreground text-xs uppercase tracking-[0.24em]">
+                  <div className="text-muted-foreground text-xs tracking-[0.24em] uppercase">
                     Latest F1
                   </div>
-                  <div className="text-4xl font-semibold">{trainingState.f1Score}</div>
+                  <div className="text-4xl font-semibold">
+                    {trainingState.f1Score}
+                  </div>
                 </div>
               </div>
               <div className="mt-8 grid gap-4 md:grid-cols-3">
-                <StatCard label="Training strains" value={trainingState.strainsInTrainingSet.toString()} icon={<Layers3 className="size-4" />} />
-                <StatCard label="Last training" value={trainingState.lastTrainingDate} icon={<Clock3 className="size-4" />} />
-                <StatCard label="Staged version" value={trainingState.stagedVersion} icon={<Activity className="size-4" />} />
+                <StatCard
+                  label="Training strains"
+                  value={trainingState.strainsInTrainingSet.toString()}
+                  icon={<Layers3 className="size-4" />}
+                />
+                <StatCard
+                  label="Last training"
+                  value={trainingState.lastTrainingDate}
+                  icon={<Clock3 className="size-4" />}
+                />
+                <StatCard
+                  label="Staged version"
+                  value={trainingState.stagedVersion}
+                  icon={<Activity className="size-4" />}
+                />
               </div>
             </section>
 
             <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              <StatCard label="New strains" value={trainingState.preflight.newStrains.toString()} icon={<TrendingUp className="size-4" />} />
-              <StatCard label="Archived strains" value={trainingState.preflight.archivedStrains.toString()} icon={<ServerCrash className="size-4" />} />
-              <StatCard label="Feedback accepted" value={trainingState.preflight.feedbackAccepted.toString()} icon={<CheckCircle2 className="size-4" />} />
-              <StatCard label="Estimated time" value={trainingState.preflight.estimatedHours} icon={<TimerReset className="size-4" />} />
+              <StatCard
+                label="New strains"
+                value={trainingState.preflight.newStrains.toString()}
+                icon={<TrendingUp className="size-4" />}
+              />
+              <StatCard
+                label="Archived strains"
+                value={trainingState.preflight.archivedStrains.toString()}
+                icon={<ServerCrash className="size-4" />}
+              />
+              <StatCard
+                label="Feedback accepted"
+                value={trainingState.preflight.feedbackAccepted.toString()}
+                icon={<CheckCircle2 className="size-4" />}
+              />
+              <StatCard
+                label="Estimated time"
+                value={trainingState.preflight.estimatedHours}
+                icon={<TimerReset className="size-4" />}
+              />
             </section>
 
             <section className="border-border/70 bg-card rounded-3xl border p-8 shadow-sm">
@@ -249,22 +288,38 @@ function TrainingPage() {
                     summary.
                   </p>
                 </div>
-                <Button size="lg" className="gap-2" onClick={() => setConfirmed(true)}>
+                <Button
+                  size="lg"
+                  className="gap-2"
+                  onClick={() => setConfirmed(true)}
+                >
                   Retrain
                   <PlayCircle className="size-4" />
                 </Button>
               </div>
               <div className="mt-6 grid gap-4 md:grid-cols-2">
                 <InfoPanel title="Pre-flight checks">
-                  <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>{trainingState.preflight.newStrains} new strains added since last train</li>
-                    <li>{trainingState.preflight.archivedStrains} strains archived since last train</li>
-                    <li>{trainingState.preflight.feedbackAccepted} feedback corrections accepted since last train</li>
-                    <li>Estimated training time: {trainingState.preflight.estimatedHours}</li>
+                  <ul className="text-muted-foreground space-y-2 text-sm">
+                    <li>
+                      {trainingState.preflight.newStrains} new strains added
+                      since last train
+                    </li>
+                    <li>
+                      {trainingState.preflight.archivedStrains} strains archived
+                      since last train
+                    </li>
+                    <li>
+                      {trainingState.preflight.feedbackAccepted} feedback
+                      corrections accepted since last train
+                    </li>
+                    <li>
+                      Estimated training time:{' '}
+                      {trainingState.preflight.estimatedHours}
+                    </li>
                   </ul>
                 </InfoPanel>
                 <InfoPanel title="Confirmation">
-                  <p className="text-sm leading-6 text-muted-foreground">
+                  <p className="text-muted-foreground text-sm leading-6">
                     {confirmed
                       ? 'Retrain confirmed. Running job shows progress instead of starting another.'
                       : 'Confirm dialog would appear before starting. Only one job can run at once.'}
@@ -278,7 +333,8 @@ function TrainingPage() {
                 <div>
                   <h2 className="text-2xl font-semibold">Progress</h2>
                   <p className="text-muted-foreground mt-1 text-sm">
-                    Stage, epoch, loss, accuracy, ETA, logs, and graceful cancel.
+                    Stage, epoch, loss, accuracy, ETA, logs, and graceful
+                    cancel.
                   </p>
                 </div>
                 <div className="flex gap-2">
@@ -294,9 +350,14 @@ function TrainingPage() {
               </div>
               <div className="mt-6 space-y-4">
                 <div>
-                  <div className="text-sm font-medium">Current stage: {trainingState.progress.stage}</div>
-                  <div className="mt-2 h-3 rounded-full bg-muted">
-                    <div className="bg-primary h-3 rounded-full" style={{ width: '30%' }} />
+                  <div className="text-sm font-medium">
+                    Current stage: {trainingState.progress.stage}
+                  </div>
+                  <div className="bg-muted mt-2 h-3 rounded-full">
+                    <div
+                      className="bg-primary h-3 rounded-full"
+                      style={{ width: '30%' }}
+                    />
                   </div>
                   <div className="text-muted-foreground mt-2 flex flex-wrap gap-4 text-sm">
                     <span>Epoch {trainingState.progress.epoch}</span>
@@ -307,16 +368,16 @@ function TrainingPage() {
                 </div>
                 <div className="grid gap-4 md:grid-cols-2">
                   <InfoPanel title="Streaming log">
-                    <div className="space-y-2 text-sm text-muted-foreground">
+                    <div className="text-muted-foreground space-y-2 text-sm">
                       <p>pre-flight checks passed</p>
                       <p>extracting features for active segments</p>
                       <p>epoch 3 / 25 loss=0.023 accuracy=0.91</p>
                     </div>
                   </InfoPanel>
                   <InfoPanel title="Notifications">
-                    <p className="text-sm leading-6 text-muted-foreground">
-                      Completion and failure alerts can go to in-app inbox and optional
-                      email/webhook.
+                    <p className="text-muted-foreground text-sm leading-6">
+                      Completion and failure alerts can go to in-app inbox and
+                      optional email/webhook.
                     </p>
                   </InfoPanel>
                 </div>
@@ -329,11 +390,16 @@ function TrainingPage() {
               <h2 className="text-2xl font-semibold">Training history</h2>
               <div className="mt-6 space-y-4">
                 {trainingState.jobs.map((job) => (
-                  <article key={job.id} className="border-border/70 rounded-2xl border p-4">
+                  <article
+                    key={job.id}
+                    className="border-border/70 rounded-2xl border p-4"
+                  >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="font-medium">{job.id}</div>
-                        <div className="text-muted-foreground text-sm">{job.type}</div>
+                        <div className="text-muted-foreground text-sm">
+                          {job.type}
+                        </div>
                       </div>
                       <StatusBadge status={job.status} />
                     </div>
@@ -344,7 +410,8 @@ function TrainingPage() {
                       <Field label="Changes" value={job.changes} />
                     </dl>
                     <div className="text-muted-foreground mt-3 text-sm">
-                      Stage {job.stage} · Epoch {job.epoch} · Loss {job.loss} · Accuracy {job.accuracy}
+                      Stage {job.stage} · Epoch {job.epoch} · Loss {job.loss} ·
+                      Accuracy {job.accuracy}
                     </div>
                   </article>
                 ))}
@@ -353,8 +420,9 @@ function TrainingPage() {
             <section className="border-border/70 bg-card rounded-3xl border p-8 shadow-sm">
               <h2 className="text-2xl font-semibold">Deployment review</h2>
               <p className="text-muted-foreground mt-3 text-sm leading-6">
-                Staged model {trainingState.stagedVersion} waits for review. Owner can
-                compare metrics, deploy, or roll back to previous version.
+                Staged model {trainingState.stagedVersion} waits for review.
+                Owner can compare metrics, deploy, or roll back to previous
+                version.
               </p>
               <div className="mt-6 flex flex-col gap-3">
                 <Button className="gap-2">
@@ -381,10 +449,12 @@ function DashboardPage() {
         <section className="border-border/70 bg-card rounded-3xl border p-8 shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <h1 className="text-4xl font-semibold tracking-tight">Overview dashboard</h1>
+              <h1 className="text-4xl font-semibold tracking-tight">
+                Overview dashboard
+              </h1>
               <p className="text-muted-foreground mt-2 max-w-2xl text-base leading-7">
-                Live status, model version, training metadata, and history in one
-                place.
+                Live status, model version, training metadata, and history in
+                one place.
               </p>
             </div>
             <Button variant="outline" className="gap-2">
@@ -393,9 +463,21 @@ function DashboardPage() {
             </Button>
           </div>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
-            <StatCard label="Current model" value={trainingState.model} icon={<Layers3 className="size-4" />} />
-            <StatCard label="Latest F1" value={trainingState.f1Score} icon={<TrendingUp className="size-4" />} />
-            <StatCard label="Status" value="running" icon={<Activity className="size-4" />} />
+            <StatCard
+              label="Current model"
+              value={trainingState.model}
+              icon={<Layers3 className="size-4" />}
+            />
+            <StatCard
+              label="Latest F1"
+              value={trainingState.f1Score}
+              icon={<TrendingUp className="size-4" />}
+            />
+            <StatCard
+              label="Status"
+              value="running"
+              icon={<Activity className="size-4" />}
+            />
           </div>
         </section>
       </PageFrame>
@@ -414,7 +496,7 @@ function StatCard({
 }) {
   return (
     <div className="border-border/70 bg-card rounded-2xl border p-5 shadow-sm">
-      <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em]">
+      <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase">
         {icon}
         {label}
       </div>
@@ -423,7 +505,13 @@ function StatCard({
   )
 }
 
-function InfoPanel({ title, children }: { title: string; children: ReactNode }) {
+function InfoPanel({
+  title,
+  children,
+}: {
+  title: string
+  children: ReactNode
+}) {
   return (
     <div className="bg-muted/30 rounded-2xl p-4">
       <div className="mb-3 text-sm font-semibold">{title}</div>
@@ -435,7 +523,9 @@ function InfoPanel({ title, children }: { title: string; children: ReactNode }) 
 function Field({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-muted-foreground text-xs uppercase tracking-[0.18em]">{label}</dt>
+      <dt className="text-muted-foreground text-xs tracking-[0.18em] uppercase">
+        {label}
+      </dt>
       <dd className="mt-1 text-sm font-medium">{value}</dd>
     </div>
   )
@@ -450,7 +540,16 @@ function StatusBadge({ status }: { status: TrainingStatus }) {
     cancelled: 'bg-muted text-muted-foreground',
   }
 
-  return <span className={cn('rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em]', classes[status])}>{status}</span>
+  return (
+    <span
+      className={cn(
+        'rounded-full px-3 py-1 text-xs font-semibold tracking-[0.18em] uppercase',
+        classes[status],
+      )}
+    >
+      {status}
+    </span>
+  )
 }
 
 export default App
