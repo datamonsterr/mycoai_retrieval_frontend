@@ -94,8 +94,11 @@ export default function UploadPage() {
             Upload flow
           </div>
           <h2 className="mt-2 text-3xl font-semibold tracking-tight">
-            Upload plates, inspect boxes, edit before retrieval.
+            Single + batch image intake
           </h2>
+          <p className="mt-2 text-xl font-semibold tracking-tight">
+            Upload plates, inspect boxes, edit before retrieval.
+          </p>
           <p className="text-muted-foreground mt-3 max-w-2xl text-sm leading-6">
             Backend stores each source image, runs segmentation, serves crop
             artifacts, and accepts bounding-box edits for downstream feature
