@@ -10,7 +10,11 @@ export function ChartStub({ data }: ChartStubProps) {
       <BarChart data={data}>
         <XAxis dataKey="name" />
         <YAxis />
-        <Bar dataKey="value" fill="var(--color-primary)" radius={[4, 4, 0, 0]} />
+        <Bar
+          dataKey="value"
+          fill="var(--color-primary)"
+          radius={[4, 4, 0, 0]}
+        />
       </BarChart>
     </ResponsiveContainer>
   )

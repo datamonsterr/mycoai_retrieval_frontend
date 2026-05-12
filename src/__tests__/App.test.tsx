@@ -24,8 +24,6 @@ describe('App', () => {
         </BrowserRouter>
       </QueryClientProvider>,
     )
-    expect(
-      screen.getByText(/stack-ready console/i),
-    ).toBeInTheDocument()
+    expect(screen.getByText(/stack-ready console/i)).toBeInTheDocument()
   })
 })

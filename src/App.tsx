@@ -26,10 +26,10 @@ function App() {
     <main className="from-background via-background to-muted/30 text-foreground min-h-screen bg-gradient-to-b">
       <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-10 px-6 py-16 md:px-10">
         <header className="max-w-3xl space-y-4">
-          <p className="text-muted-foreground text-sm font-medium uppercase tracking-[0.3em]">
+          <p className="text-muted-foreground text-sm font-medium tracking-[0.3em] uppercase">
             MycoAI Retrieval Platform
           </p>
-          <h1 className="text-balance text-4xl font-semibold tracking-tight md:text-6xl">
+          <h1 className="text-4xl font-semibold tracking-tight text-balance md:text-6xl">
             Stack-ready console for retrieval, upload, auth, and analytics.
           </h1>
           <p className="text-muted-foreground max-w-2xl text-base leading-7 md:text-lg">
@@ -39,10 +39,15 @@ function App() {
         </header>
 
         <div className="grid gap-6 lg:grid-cols-2">
-          <form className="bg-card border-border rounded-3xl border p-6 shadow-sm" onSubmit={onSubmit}>
+          <form
+            className="bg-card border-border rounded-3xl border p-6 shadow-sm"
+            onSubmit={onSubmit}
+          >
             <div className="mb-4 space-y-2">
               <h2 className="text-lg font-semibold">Auth form</h2>
-              <p className="text-muted-foreground text-sm">Zod validation via React Hook Form.</p>
+              <p className="text-muted-foreground text-sm">
+                Zod validation via React Hook Form.
+              </p>
             </div>
             <div className="grid gap-4">
               <label className="grid gap-2 text-sm font-medium">
@@ -71,11 +76,15 @@ function App() {
           <div className="bg-card border-border rounded-3xl border p-6 shadow-sm">
             <div className="mb-4 space-y-2">
               <h2 className="text-lg font-semibold">Upload + chart</h2>
-              <p className="text-muted-foreground text-sm">File dropzone and Recharts stub.</p>
+              <p className="text-muted-foreground text-sm">
+                File dropzone and Recharts stub.
+              </p>
             </div>
             <div className="grid gap-4">
               <FileDropzone onFilesAccepted={setFiles} />
-              <p className="text-muted-foreground text-sm">Accepted files: {files.length}</p>
+              <p className="text-muted-foreground text-sm">
+                Accepted files: {files.length}
+              </p>
               <ChartStub data={chartData} />
             </div>
           </div>

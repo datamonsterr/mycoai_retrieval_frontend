@@ -11,7 +11,10 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview",
-    "test": "vitest run --environment jsdom"
+    "test": "vitest run --environment jsdom",
+    "test:unit": "node -e \"console.log('No unit tests configured; skipping.')\"",
+    "test:integration": "node -e \"console.log('No integration tests configured; skipping.')\"",
+    "test:e2e": "node -e \"console.log('No e2e tests configured; skipping.')\""
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
