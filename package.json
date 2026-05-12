@@ -12,7 +12,7 @@
     "format:check": "prettier --check .",
     "preview": "vite preview",
     "test": "vitest run --environment jsdom",
-    "test:unit": "node -e \"console.log('No unit tests configured; skipping.')\"",
+    "test:unit": "vitest run --environment jsdom",
     "test:integration": "node -e \"console.log('No integration tests configured; skipping.')\"",
     "test:e2e": "node -e \"console.log('No e2e tests configured; skipping.')\""
   },
