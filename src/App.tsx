@@ -1,4 +1,9 @@
-import { CheckCircle2, Inbox, MessageSquareWarning, XCircle } from 'lucide-react'
+import {
+  CheckCircle2,
+  Inbox,
+  MessageSquareWarning,
+  XCircle,
+} from 'lucide-react'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -50,8 +55,11 @@ function App() {
 
   const pending = feedback.filter((item) => item.status === 'pending')
   const reviewed = feedback.filter((item) => item.status !== 'pending')
-  const acceptedCount = feedback.filter((item) => item.status === 'accepted').length
-  const acceptanceRate = reviewed.length === 0 ? 0 : acceptedCount / reviewed.length
+  const acceptedCount = feedback.filter(
+    (item) => item.status === 'accepted',
+  ).length
+  const acceptanceRate =
+    reviewed.length === 0 ? 0 : acceptedCount / reviewed.length
 
   function review(id: string, status: Exclude<FeedbackStatus, 'pending'>) {
     setFeedback((items) =>
@@ -90,9 +98,9 @@ function App() {
   return (
     <main className="from-background via-background to-muted/30 text-foreground min-h-screen bg-gradient-to-b">
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-10 md:px-10">
-        <div className="flex flex-col gap-6 rounded-[2rem] border bg-card p-8 shadow-sm md:flex-row md:items-end md:justify-between">
+        <div className="bg-card flex flex-col gap-6 rounded-[2rem] border p-8 shadow-sm md:flex-row md:items-end md:justify-between">
           <div className="space-y-4">
-            <div className="inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.2em] uppercase text-muted-foreground">
+            <div className="text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.2em] uppercase">
               <MessageSquareWarning className="size-3.5" />
               Feedback pipeline
             </div>
@@ -100,7 +108,7 @@ function App() {
               <h1 className="max-w-3xl text-4xl font-semibold tracking-tight md:text-5xl">
                 Submit, review, and apply fungal retrieval corrections.
               </h1>
-              <p className="max-w-2xl text-muted-foreground">
+              <p className="text-muted-foreground max-w-2xl">
                 Users report incorrect predictions. Data owners accept, reject,
                 defer, and queue accepted strains for re-indexing.
               </p>
@@ -119,12 +127,18 @@ function App() {
 
         <div className="grid gap-4 md:grid-cols-3">
           <Metric label="Pending review" value={pending.length.toString()} />
-          <Metric label="Acceptance rate" value={`${Math.round(acceptanceRate * 100)}%`} />
-          <Metric label="Unread notifications" value={reviewed.length.toString()} />
+          <Metric
+            label="Acceptance rate"
+            value={`${Math.round(acceptanceRate * 100)}%`}
+          />
+          <Metric
+            label="Unread notifications"
+            value={reviewed.length.toString()}
+          />
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.5fr_1fr]">
-          <section className="rounded-[2rem] border bg-card p-6 shadow-sm">
+          <section className="bg-card rounded-[2rem] border p-6 shadow-sm">
             <div className="mb-5 flex items-center gap-2">
               <Inbox className="size-5" />
               <h2 className="text-xl font-semibold">Data owner inbox</h2>
@@ -135,7 +149,7 @@ function App() {
                   <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
                     <div>
                       <p className="font-medium">{item.queryStrain}</p>
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-muted-foreground text-sm">
                         {item.submitter} · {item.source.replace('_', ' ')}
                       </p>
                     </div>
@@ -151,23 +165,36 @@ function App() {
                       <dd>{item.suggestedSpecies}</dd>
                     </div>
                   </dl>
-                  <p className="mt-4 text-sm text-muted-foreground">{item.description}</p>
+                  <p className="text-muted-foreground mt-4 text-sm">
+                    {item.description}
+                  </p>
                   {item.reviewNote ? (
-                    <p className="mt-3 rounded-2xl bg-muted px-3 py-2 text-sm">
+                    <p className="bg-muted mt-3 rounded-2xl px-3 py-2 text-sm">
                       {item.reviewNote}
                     </p>
                   ) : null}
                   {item.status === 'pending' ? (
                     <div className="mt-4 flex flex-wrap gap-2">
-                      <Button size="sm" onClick={() => review(item.id, 'accepted')}>
+                      <Button
+                        size="sm"
+                        onClick={() => review(item.id, 'accepted')}
+                      >
                         <CheckCircle2 className="size-4" />
                         Accept
                       </Button>
-                      <Button size="sm" variant="outline" onClick={() => review(item.id, 'rejected')}>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => review(item.id, 'rejected')}
+                      >
                         <XCircle className="size-4" />
                         Reject
                       </Button>
-                      <Button size="sm" variant="outline" onClick={() => review(item.id, 'deferred')}>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        onClick={() => review(item.id, 'deferred')}
+                      >
                         Defer
                       </Button>
                     </div>
@@ -178,24 +205,31 @@ function App() {
           </section>
 
           <aside className="space-y-6">
-            <section className="rounded-[2rem] border bg-card p-6 shadow-sm">
+            <section className="bg-card rounded-[2rem] border p-6 shadow-sm">
               <h2 className="mb-4 text-xl font-semibold">My feedback</h2>
               <div className="space-y-3">
                 {feedback.map((item) => (
-                  <div key={`mine-${item.id}`} className="rounded-2xl bg-muted/70 p-4 text-sm">
+                  <div
+                    key={`mine-${item.id}`}
+                    className="bg-muted/70 rounded-2xl p-4 text-sm"
+                  >
                     <div className="flex items-center justify-between gap-3">
-                      <span className="font-medium">{item.suggestedSpecies}</span>
+                      <span className="font-medium">
+                        {item.suggestedSpecies}
+                      </span>
                       <StatusBadge status={item.status} />
                     </div>
-                    <p className="mt-2 text-muted-foreground">{item.reviewNote ?? item.description}</p>
+                    <p className="text-muted-foreground mt-2">
+                      {item.reviewNote ?? item.description}
+                    </p>
                   </div>
                 ))}
               </div>
             </section>
 
-            <section className="rounded-[2rem] border bg-card p-6 shadow-sm">
+            <section className="bg-card rounded-[2rem] border p-6 shadow-sm">
               <h2 className="mb-3 text-xl font-semibold">Accept workflow</h2>
-              <ol className="space-y-3 text-sm text-muted-foreground">
+              <ol className="text-muted-foreground space-y-3 text-sm">
                 <li>1. Update strain species when known.</li>
                 <li>2. Flag Qdrant points inactive.</li>
                 <li>3. Queue re-extract and re-upsert task.</li>
@@ -211,8 +245,8 @@ function App() {
 
 function Metric({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-3xl border bg-card p-6 shadow-sm">
-      <p className="text-sm text-muted-foreground">{label}</p>
+    <div className="bg-card rounded-3xl border p-6 shadow-sm">
+      <p className="text-muted-foreground text-sm">{label}</p>
       <p className="mt-2 text-3xl font-semibold">{value}</p>
     </div>
   )
@@ -220,7 +254,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 function StatusBadge({ status }: { status: FeedbackStatus }) {
   return (
-    <span className="rounded-full border px-3 py-1 text-xs font-medium capitalize text-muted-foreground">
+    <span className="text-muted-foreground rounded-full border px-3 py-1 text-xs font-medium capitalize">
       {status}
     </span>
   )
