@@ -91,10 +91,10 @@ const sampleRetrieval: RetrievalQueryResponse = {
 
 function App() {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-background via-background to-muted/30 text-foreground">
+    <main className="from-background via-background to-muted/30 text-foreground min-h-screen bg-gradient-to-b">
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-12 px-6 py-16 md:px-10">
         <div className="max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-background/80 px-3 py-1 text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase backdrop-blur">
+          <div className="border-border/70 bg-background/80 text-muted-foreground inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-medium tracking-[0.2em] uppercase backdrop-blur">
             <Layers3 className="size-3.5" />
             MycoAI Retrieval Platform
           </div>
@@ -103,8 +103,9 @@ function App() {
             <h1 className="max-w-2xl text-4xl font-semibold tracking-tight text-balance md:text-6xl">
               Scientist-facing retrieval visualization workflows.
             </h1>
-            <p className="max-w-2xl text-base leading-7 text-muted-foreground md:text-lg">
-              Ranked species predictions, per-media KNN evidence, CSV export, and query-centered graph exploration.
+            <p className="text-muted-foreground max-w-2xl text-base leading-7 md:text-lg">
+              Ranked species predictions, per-media KNN evidence, CSV export,
+              and query-centered graph exploration.
             </p>
           </div>
 
@@ -121,32 +122,32 @@ function App() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
-          <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-sm">
-            <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3 text-primary">
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
               <Search className="size-5" />
             </div>
             <h2 className="mb-2 text-lg font-semibold">Ranked Results</h2>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="text-muted-foreground text-sm leading-6">
               Sort ranked species predictions and inspect confidence bars.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-sm">
-            <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3 text-primary">
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
               <FlaskConical className="size-5" />
             </div>
             <h2 className="mb-2 text-lg font-semibold">KNN Evidence</h2>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="text-muted-foreground text-sm leading-6">
               Expand each species to view per-media neighbors and thumbnails.
             </p>
           </div>
 
-          <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-sm">
-            <div className="mb-4 inline-flex rounded-2xl bg-primary/10 p-3 text-primary">
+          <div className="border-border/70 bg-card rounded-3xl border p-6 shadow-sm">
+            <div className="bg-primary/10 text-primary mb-4 inline-flex rounded-2xl p-3">
               <Layers3 className="size-5" />
             </div>
             <h2 className="mb-2 text-lg font-semibold">Graph Exploration</h2>
-            <p className="text-sm leading-6 text-muted-foreground">
+            <p className="text-muted-foreground text-sm leading-6">
               Tune k and edge weighting while exploring species clusters.
             </p>
           </div>

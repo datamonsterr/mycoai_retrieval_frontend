@@ -49,7 +49,9 @@ describe('buildGraphData', () => {
   test('creates links from query to each neighbor', () => {
     const data = buildGraphData(rankings, 5, 'weighted')
     expect(data.links.length).toBe(2)
-    expect(data.links.every((link) => link.source === 'query-strain')).toBe(true)
+    expect(data.links.every((link) => link.source === 'query-strain')).toBe(
+      true,
+    )
   })
 
   test('respects k limit', () => {
@@ -78,14 +80,28 @@ describe('buildGraphData', () => {
             media: 'MEA',
             query_image_id: 'q1',
             neighbors: [
-              { image_id: 'img-1', thumbnail_url: '', species: 'A', strain: 'S1', similarity: 0.9, growth_medium: 'M1' },
+              {
+                image_id: 'img-1',
+                thumbnail_url: '',
+                species: 'A',
+                strain: 'S1',
+                similarity: 0.9,
+                growth_medium: 'M1',
+              },
             ],
           },
           {
             media: 'CYA',
             query_image_id: 'q2',
             neighbors: [
-              { image_id: 'img-1', thumbnail_url: '', species: 'A', strain: 'S1', similarity: 0.85, growth_medium: 'M1' },
+              {
+                image_id: 'img-1',
+                thumbnail_url: '',
+                species: 'A',
+                strain: 'S1',
+                similarity: 0.85,
+                growth_medium: 'M1',
+              },
             ],
           },
         ],

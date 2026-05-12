@@ -56,7 +56,9 @@ describe('rankingsToCsv', () => {
   })
 
   test('escapes commas in species name', () => {
-    const csv = rankingsToCsv([{ rank: 1, species: 'Fungus, sp.', score: 0.5, media_details: [] }])
+    const csv = rankingsToCsv([
+      { rank: 1, species: 'Fungus, sp.', score: 0.5, media_details: [] },
+    ])
     expect(csv).toContain('"Fungus, sp."')
   })
 })
@@ -80,15 +82,21 @@ describe('ResultsTable', () => {
 
   test('export button triggers CSV download', async () => {
     const user = userEvent.setup()
-    const createObjectURL = vi.spyOn(URL, 'createObjectURL').mockReturnValue('blob:test')
-    const revokeObjectURL = vi.spyOn(URL, 'revokeObjectURL').mockImplementation(() => {})
+    const createObjectURL = vi
+      .spyOn(URL, 'createObjectURL')
+      .mockReturnValue('blob:test')
+    const revokeObjectURL = vi
+      .spyOn(URL, 'revokeObjectURL')
+      .mockImplementation(() => {})
     const originalCreateElement = document.createElement.bind(document)
     const click = vi.fn()
-    vi.spyOn(document, 'createElement').mockImplementation((tagName: string) => {
-      const element = originalCreateElement(tagName)
-      if (tagName === 'a') element.click = click
-      return element
-    })
+    vi.spyOn(document, 'createElement').mockImplementation(
+      (tagName: string) => {
+        const element = originalCreateElement(tagName)
+        if (tagName === 'a') element.click = click
+        return element
+      },
+    )
 
     render(<ResultsTable rankings={sampleRankings} />)
     await user.click(screen.getByText('Export CSV'))

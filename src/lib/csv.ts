@@ -18,7 +18,9 @@ export function rankingsToCsv(rankings: RankedSpeciesResult[]): string {
 }
 
 export function exportRankingsCsv(rankings: RankedSpeciesResult[]): void {
-  const blob = new Blob([rankingsToCsv(rankings)], { type: 'text/csv;charset=utf-8' })
+  const blob = new Blob([rankingsToCsv(rankings)], {
+    type: 'text/csv;charset=utf-8',
+  })
   const url = URL.createObjectURL(blob)
   const link = document.createElement('a')
   link.href = url

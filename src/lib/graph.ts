@@ -1,11 +1,31 @@
-import type { AggregationStrategy, GraphLink, GraphNode, RankedSpeciesResult } from '@/types/retrieval'
+import type {
+  AggregationStrategy,
+  GraphLink,
+  GraphNode,
+  RankedSpeciesResult,
+} from '@/types/retrieval'
 
 export const GRAPH_WIDTH = 760
 export const GRAPH_HEIGHT = 460
 export const QUERY_ID = 'query-strain'
-export const SPECIES_COLORS = ['#10b981', '#f59e0b', '#ef4444', '#3b82f6', '#8b5cf6', '#14b8a6', '#f97316']
+export const SPECIES_COLORS = [
+  '#10b981',
+  '#f59e0b',
+  '#ef4444',
+  '#3b82f6',
+  '#8b5cf6',
+  '#14b8a6',
+  '#f97316',
+]
 
-export type SimulationNode = GraphNode & { x?: number; y?: number; vx?: number; vy?: number; fx?: number | null; fy?: number | null }
+export type SimulationNode = GraphNode & {
+  x?: number
+  y?: number
+  vx?: number
+  vy?: number
+  fx?: number | null
+  fy?: number | null
+}
 
 type GraphData = {
   nodes: GraphNode[]
@@ -21,7 +41,7 @@ export function speciesColor(species: string, speciesList: string[]): string {
 export function buildGraphData(
   rankings: RankedSpeciesResult[],
   k: number,
-  aggregation: AggregationStrategy
+  aggregation: AggregationStrategy,
 ): GraphData {
   const nodeMap = new Map<string, GraphNode>()
   const linkMap = new Map<string, GraphLink>()

@@ -22,22 +22,26 @@ export function Lightbox({
       onClick={onClose}
     >
       <div
-        className="relative max-h-full max-w-4xl overflow-hidden rounded-2xl bg-background shadow-2xl"
+        className="bg-background relative max-h-full max-w-4xl overflow-hidden rounded-2xl shadow-2xl"
         onClick={(event) => event.stopPropagation()}
       >
         <button
           type="button"
           className={cn(
-            'absolute right-3 top-3 rounded-full bg-background/90 p-2 text-foreground shadow',
-            'transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50'
+            'bg-background/90 text-foreground absolute top-3 right-3 rounded-full p-2 shadow',
+            'hover:bg-muted focus-visible:ring-ring/50 transition-colors focus-visible:ring-2 focus-visible:outline-none',
           )}
           onClick={onClose}
           aria-label="Close image preview"
         >
           <X className="size-4" />
         </button>
-        <img src={src} alt={alt} className="max-h-[80vh] w-full object-contain" />
-        <p className="border-t border-border/70 px-4 py-3 text-sm text-muted-foreground">
+        <img
+          src={src}
+          alt={alt}
+          className="max-h-[80vh] w-full object-contain"
+        />
+        <p className="border-border/70 text-muted-foreground border-t px-4 py-3 text-sm">
           {caption}
         </p>
       </div>

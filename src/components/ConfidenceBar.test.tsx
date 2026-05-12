@@ -15,7 +15,9 @@ describe('ConfidenceBar', () => {
     [0.2, 'red'],
   ])('score %.2f uses %s color class', (score, colorClass) => {
     render(<ConfidenceBar score={score} />)
-    expect(screen.getByTestId('confidence-fill').className).toContain(colorClass)
+    expect(screen.getByTestId('confidence-fill').className).toContain(
+      colorClass,
+    )
   })
 
   test('bar width matches percent', () => {

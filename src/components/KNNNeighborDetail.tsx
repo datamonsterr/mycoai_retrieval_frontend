@@ -29,7 +29,7 @@ function NeighborThumb({
           'flex w-44 shrink-0 flex-col overflow-hidden rounded-xl border',
           'cursor-pointer text-left shadow-sm transition-all hover:shadow-md',
           'focus-visible:ring-2 focus-visible:outline-none',
-          'active:scale-[0.98]'
+          'active:scale-[0.98]',
         )}
         onClick={() => setOpen(true)}
         aria-label={`Open ${thumb.species} ${thumb.strain} full image`}
@@ -41,7 +41,7 @@ function NeighborThumb({
           loading="lazy"
         />
         <div className="space-y-0.5 px-2.5 py-2">
-          <p className="text-foreground text-xs font-medium leading-tight truncate">
+          <p className="text-foreground truncate text-xs leading-tight font-medium">
             {thumb.species}
           </p>
           <p className="text-muted-foreground flex items-center gap-1 text-[11px]">
@@ -87,10 +87,7 @@ export function KNNNeighborDetail({
             aria-label={`Neighbors for ${md.media}`}
           >
             {md.neighbors.map((n) => (
-              <NeighborThumb
-                key={`${n.image_id}-${n.strain}`}
-                thumb={n}
-              />
+              <NeighborThumb key={`${n.image_id}-${n.strain}`} thumb={n} />
             ))}
           </div>
         </div>

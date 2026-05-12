@@ -11,10 +11,13 @@ describe('Lightbox', () => {
         alt="Test image"
         caption="PC-104 · MEA"
         onClose={() => {}}
-      />
+      />,
     )
     expect(screen.getByRole('dialog')).toBeInTheDocument()
-    expect(screen.getByRole('img')).toHaveAttribute('src', 'https://placehold.co/256/png')
+    expect(screen.getByRole('img')).toHaveAttribute(
+      'src',
+      'https://placehold.co/256/png',
+    )
     expect(screen.getByText('PC-104 · MEA')).toBeInTheDocument()
   })
 
@@ -27,7 +30,7 @@ describe('Lightbox', () => {
         alt="Test"
         caption="Caption"
         onClose={onClose}
-      />
+      />,
     )
     await user.click(screen.getByRole('dialog'))
     expect(onClose).toHaveBeenCalled()
@@ -42,7 +45,7 @@ describe('Lightbox', () => {
         alt="Test"
         caption="Caption"
         onClose={onClose}
-      />
+      />,
     )
     await user.click(screen.getByLabelText('Close image preview'))
     expect(onClose).toHaveBeenCalled()

@@ -1,7 +1,13 @@
 import type { RankedSpeciesResult } from '@/types/retrieval'
 
 import { Fragment, useState } from 'react'
-import { ArrowDown, ArrowUp, ChevronDown, ChevronRight, Download } from 'lucide-react'
+import {
+  ArrowDown,
+  ArrowUp,
+  ChevronDown,
+  ChevronRight,
+  Download,
+} from 'lucide-react'
 
 import { exportRankingsCsv } from '@/lib/csv'
 import { cn } from '@/lib/utils'
@@ -15,7 +21,7 @@ type SortDir = 'asc' | 'desc'
 function sortRankings(
   rankings: RankedSpeciesResult[],
   key: SortKey,
-  dir: SortDir
+  dir: SortDir,
 ): RankedSpeciesResult[] {
   const sign = dir === 'asc' ? 1 : -1
   return rankings.toSorted((a, b) => {
@@ -35,10 +41,12 @@ const TH: React.FC<{
   const active = activeKey === sortKey
   return (
     <th
-      className="cursor-pointer px-4 py-3 text-left text-xs font-medium tracking-wider text-muted-foreground uppercase select-none"
+      className="text-muted-foreground cursor-pointer px-4 py-3 text-left text-xs font-medium tracking-wider uppercase select-none"
       onClick={() => onSort(sortKey)}
       role="columnheader"
-      aria-sort={active ? (activeDir === 'asc' ? 'ascending' : 'descending') : 'none'}
+      aria-sort={
+        active ? (activeDir === 'asc' ? 'ascending' : 'descending') : 'none'
+      }
       tabIndex={0}
       onKeyDown={(event) => {
         if (event.key === 'Enter' || event.key === ' ') onSort(sortKey)
@@ -58,7 +66,11 @@ const TH: React.FC<{
   )
 }
 
-export function ResultsTable({ rankings }: { rankings: RankedSpeciesResult[] }) {
+export function ResultsTable({
+  rankings,
+}: {
+  rankings: RankedSpeciesResult[]
+}) {
   const [sortKey, setSortKey] = useState<SortKey>('rank')
   const [sortDir, setSortDir] = useState<SortDir>('asc')
   const [expanded, setExpanded] = useState<Set<number>>(new Set())
@@ -96,13 +108,31 @@ export function ResultsTable({ rankings }: { rankings: RankedSpeciesResult[] }) 
           Export CSV
         </Button>
       </div>
-      <div className="w-full overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm">
+      <div className="border-border/70 bg-card w-full overflow-hidden rounded-2xl border shadow-sm">
         <table className="w-full">
           <thead>
-            <tr className="border-b border-border/70 bg-muted/40">
-              <TH label="Rank" sortKey="rank" activeKey={sortKey} activeDir={sortDir} onSort={handleSort} />
-              <TH label="Species" sortKey="species" activeKey={sortKey} activeDir={sortDir} onSort={handleSort} />
-              <TH label="Confidence" sortKey="score" activeKey={sortKey} activeDir={sortDir} onSort={handleSort} />
+            <tr className="border-border/70 bg-muted/40 border-b">
+              <TH
+                label="Rank"
+                sortKey="rank"
+                activeKey={sortKey}
+                activeDir={sortDir}
+                onSort={handleSort}
+              />
+              <TH
+                label="Species"
+                sortKey="species"
+                activeKey={sortKey}
+                activeDir={sortDir}
+                onSort={handleSort}
+              />
+              <TH
+                label="Confidence"
+                sortKey="score"
+                activeKey={sortKey}
+                activeDir={sortDir}
+                onSort={handleSort}
+              />
               <th className="px-4 py-3 text-right" />
             </tr>
           </thead>
@@ -113,33 +143,40 @@ export function ResultsTable({ rankings }: { rankings: RankedSpeciesResult[] }) 
                 <Fragment key={result.rank}>
                   <tr
                     className={cn(
-                      'cursor-pointer border-b border-border/40 transition-colors hover:bg-muted/30',
-                      index % 2 === 0 ? 'bg-background' : 'bg-muted/10'
+                      'border-border/40 hover:bg-muted/30 cursor-pointer border-b transition-colors',
+                      index % 2 === 0 ? 'bg-background' : 'bg-muted/10',
                     )}
                     onClick={() => toggleExpand(result.rank)}
                     role="row"
                     tabIndex={0}
                     onKeyDown={(event) => {
-                      if (event.key === 'Enter' || event.key === ' ') toggleExpand(result.rank)
+                      if (event.key === 'Enter' || event.key === ' ')
+                        toggleExpand(result.rank)
                     }}
                   >
-                    <td className="px-4 py-3.5 text-sm text-muted-foreground tabular-nums">
+                    <td className="text-muted-foreground px-4 py-3.5 text-sm tabular-nums">
                       {result.rank}
                     </td>
-                    <td className="px-4 py-3.5 text-sm font-medium text-foreground">
+                    <td className="text-foreground px-4 py-3.5 text-sm font-medium">
                       {result.species}
                     </td>
                     <td className="px-4 py-3.5">
                       <ConfidenceBar score={result.score} />
                     </td>
-                    <td className="px-4 py-3.5 text-right text-muted-foreground">
-                      {open ? <ChevronDown className="ml-auto size-4" /> : <ChevronRight className="ml-auto size-4" />}
+                    <td className="text-muted-foreground px-4 py-3.5 text-right">
+                      {open ? (
+                        <ChevronDown className="ml-auto size-4" />
+                      ) : (
+                        <ChevronRight className="ml-auto size-4" />
+                      )}
                     </td>
                   </tr>
                   {open ? (
                     <tr className="bg-muted/20">
                       <td colSpan={4} className="px-4 py-3">
-                        <KNNNeighborDetail mediaDetails={result.media_details} />
+                        <KNNNeighborDetail
+                          mediaDetails={result.media_details}
+                        />
                       </td>
                     </tr>
                   ) : null}
