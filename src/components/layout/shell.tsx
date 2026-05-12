@@ -17,13 +17,16 @@ export function Shell({ children }: { children: React.ReactNode }) {
       <div className="mx-auto grid min-h-screen max-w-[1600px] gap-6 px-4 py-4 lg:grid-cols-[280px_minmax(0,1fr)] lg:px-6">
         <aside className="border-border/70 bg-card/80 flex flex-col gap-6 rounded-3xl border p-4 shadow-sm backdrop-blur">
           <div className="space-y-2">
-            <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.24em]">
+            <div className="text-muted-foreground flex items-center gap-2 text-xs font-semibold tracking-[0.24em] uppercase">
               <Microscope className="size-4" />
               MycoAI Retrieval
             </div>
-            <p className="text-2xl font-semibold tracking-tight">Front-end shell</p>
-            <p className="text-sm leading-6 text-muted-foreground">
-              Sidebar layout, route map, and state boundaries for scientist workflows.
+            <p className="text-2xl font-semibold tracking-tight">
+              Front-end shell
+            </p>
+            <p className="text-muted-foreground text-sm leading-6">
+              Sidebar layout, route map, and state boundaries for scientist
+              workflows.
             </p>
           </div>
 
@@ -35,7 +38,9 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 className={({ isActive }) =>
                   [
                     'flex items-center justify-between rounded-2xl px-3 py-2 text-sm transition-colors',
-                    isActive ? 'bg-primary text-primary-foreground' : 'hover:bg-muted',
+                    isActive
+                      ? 'bg-primary text-primary-foreground'
+                      : 'hover:bg-muted',
                   ].join(' ')
                 }
               >
@@ -54,7 +59,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
               <Button size="sm" variant="outline" onClick={toggleTheme}>
                 Theme: {theme}
               </Button>
-              <Button size="sm" variant="secondary" onClick={logout} disabled={user === null}>
+              <Button
+                size="sm"
+                variant="secondary"
+                onClick={logout}
+                disabled={user === null}
+              >
                 Logout
               </Button>
             </div>
@@ -64,8 +74,12 @@ export function Shell({ children }: { children: React.ReactNode }) {
         <main className="min-w-0 space-y-6">
           <header className="border-border/70 bg-card/80 flex flex-wrap items-center justify-between gap-4 rounded-3xl border px-5 py-4 shadow-sm backdrop-blur">
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">Desktop-first SPA</p>
-              <h1 className="text-2xl font-semibold tracking-tight">Route hierarchy + server state ready</h1>
+              <p className="text-muted-foreground text-xs tracking-[0.24em] uppercase">
+                Desktop-first SPA
+              </p>
+              <h1 className="text-2xl font-semibold tracking-tight">
+                Route hierarchy + server state ready
+              </h1>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button asChild variant="outline" size="sm">

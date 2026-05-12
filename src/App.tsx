@@ -18,7 +18,11 @@ function AppRouter() {
   return (
     <Shell>
       <Suspense
-        fallback={<div className="text-muted-foreground p-6 text-sm">Loading view...</div>}
+        fallback={
+          <div className="text-muted-foreground p-6 text-sm">
+            Loading view...
+          </div>
+        }
       >
         <Routes>
           <Route path="/" element={<Navigate to="/upload" replace />} />
@@ -28,8 +32,14 @@ function AppRouter() {
           <Route path="/results/:jobId" element={<ResultsPage />} />
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route path="/database" element={<DatabasePage />} />
-          <Route path="/database/species/:id" element={<DatabasePage variant="species" />} />
-          <Route path="/database/strains/:id" element={<DatabasePage variant="strain" />} />
+          <Route
+            path="/database/species/:id"
+            element={<DatabasePage variant="species" />}
+          />
+          <Route
+            path="/database/strains/:id"
+            element={<DatabasePage variant="strain" />}
+          />
           <Route path="/feedback" element={<FeedbackPage />} />
           <Route path="/feedback/inbox" element={<FeedbackPage inbox />} />
           <Route path="/training" element={<TrainingPage />} />
