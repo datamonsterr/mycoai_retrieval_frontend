@@ -10,13 +10,18 @@
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "pnpm run test:unit",
+    "test:unit": "node -e \"console.log('No unit tests configured; skipping.')\"",
+    "test:integration": "node -e \"console.log('No integration tests configured; skipping.')\"",
+    "test:e2e": "node -e \"console.log('No e2e tests configured; skipping.')\""
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.8.0",
+    "react-router-dom": "^7.7.0",
     "radix-ui": "^1.4.3",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
