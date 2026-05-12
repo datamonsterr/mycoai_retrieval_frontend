@@ -1,5 +1,12 @@
 import { useState } from 'react'
-import { ArrowRight, CheckCircle, FlaskConical, Layers3, MessageSquare, Search } from 'lucide-react'
+import {
+  ArrowRight,
+  CheckCircle,
+  FlaskConical,
+  Layers3,
+  MessageSquare,
+  Search,
+} from 'lucide-react'
 
 import type { Page } from '@/types/feedback'
 import { Button } from '@/components/ui/button'
@@ -8,9 +15,21 @@ import MyFeedback from '@/pages/MyFeedback'
 import FeedbackInbox from '@/pages/FeedbackInbox'
 
 const PAGES: { id: Page; label: string; icon: React.ReactNode }[] = [
-  { id: 'submit', label: 'Submit Feedback', icon: <MessageSquare className="size-4" /> },
-  { id: 'my-feedback', label: 'My Feedback', icon: <CheckCircle className="size-4" /> },
-  { id: 'inbox', label: 'Feedback Inbox', icon: <Layers3 className="size-4" /> },
+  {
+    id: 'submit',
+    label: 'Submit Feedback',
+    icon: <MessageSquare className="size-4" />,
+  },
+  {
+    id: 'my-feedback',
+    label: 'My Feedback',
+    icon: <CheckCircle className="size-4" />,
+  },
+  {
+    id: 'inbox',
+    label: 'Feedback Inbox',
+    icon: <Layers3 className="size-4" />,
+  },
 ]
 
 function App() {
@@ -41,15 +60,29 @@ function App() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <Button size="lg" className="gap-2" onClick={() => setPage('submit')}>
+            <Button
+              size="lg"
+              className="gap-2"
+              onClick={() => setPage('submit')}
+            >
               Report Incorrect Prediction
               <ArrowRight className="size-4" />
             </Button>
-            <Button size="lg" variant="outline" className="gap-2" onClick={() => setPage('inbox')}>
+            <Button
+              size="lg"
+              variant="outline"
+              className="gap-2"
+              onClick={() => setPage('inbox')}
+            >
               Feedback Inbox
               <MessageSquare className="size-4" />
             </Button>
-            <Button size="lg" variant="outline" className="gap-2" onClick={() => setPage('my-feedback')}>
+            <Button
+              size="lg"
+              variant="outline"
+              className="gap-2"
+              onClick={() => setPage('my-feedback')}
+            >
               My Feedback
               <CheckCircle className="size-4" />
             </Button>
@@ -95,7 +128,8 @@ function App() {
           <h2 className="mb-4 text-lg font-semibold">Feedback Pipeline</h2>
           <p className="text-muted-foreground mb-6 text-sm leading-6">
             Users can report incorrect species predictions. Data owners review,
-            accept, or reject feedback. Accepted feedback feeds into model improvement.
+            accept, or reject feedback. Accepted feedback feeds into model
+            improvement.
           </p>
           <div className="flex flex-wrap gap-3">
             {PAGES.map((p) => (

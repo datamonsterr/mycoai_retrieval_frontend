@@ -46,18 +46,25 @@ export default function MyFeedback({ setPage }: Props) {
           className="border-border bg-background w-48 rounded-lg border px-3 py-2 text-sm"
           placeholder="Submitter ID"
         />
-        <Button size="sm" variant="outline" onClick={() => void load()} disabled={loading}>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => void load()}
+          disabled={loading}
+        >
           Refresh
         </Button>
       </div>
       {items.length === 0 && !loading && (
-        <p className="text-muted-foreground text-sm">No feedback submitted yet.</p>
+        <p className="text-muted-foreground text-sm">
+          No feedback submitted yet.
+        </p>
       )}
       <ul className="space-y-3">
         {items.map((item) => (
           <li
             key={item.feedback_id}
-            className="border-border bg-card rounded-xl border p-4 text-sm space-y-1"
+            className="border-border bg-card space-y-1 rounded-xl border p-4 text-sm"
           >
             <div className="flex items-center gap-2">
               <span
@@ -74,11 +81,13 @@ export default function MyFeedback({ setPage }: Props) {
               &nbsp;&rarr;&nbsp;
               <span className="line-through">{item.predicted_species}</span>
               &nbsp;&rarr;&nbsp;
-              <span className="text-primary font-medium">{item.suggested_species}</span>
+              <span className="text-primary font-medium">
+                {item.suggested_species}
+              </span>
             </p>
             <p className="text-muted-foreground">{item.description}</p>
             {item.review_note && (
-              <p className="text-muted-foreground border-t border-border pt-2 text-xs">
+              <p className="text-muted-foreground border-border border-t pt-2 text-xs">
                 Reviewer note: {item.review_note}
               </p>
             )}

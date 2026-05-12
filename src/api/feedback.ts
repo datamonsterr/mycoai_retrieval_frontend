@@ -1,4 +1,8 @@
-import type { FeedbackCreate, FeedbackItem, FeedbackReview } from '@/types/feedback'
+import type {
+  FeedbackCreate,
+  FeedbackItem,
+  FeedbackReview,
+} from '@/types/feedback'
 
 const API_BASE = '/api/v1/feedback'
 
@@ -33,7 +37,10 @@ export function getFeedback(id: string): Promise<FeedbackItem> {
   return fetchJson<FeedbackItem>(`${API_BASE}/${id}`)
 }
 
-export function reviewFeedback(id: string, body: FeedbackReview): Promise<FeedbackItem> {
+export function reviewFeedback(
+  id: string,
+  body: FeedbackReview,
+): Promise<FeedbackItem> {
   return fetchJson<FeedbackItem>(`${API_BASE}/${id}/review`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
@@ -41,7 +48,9 @@ export function reviewFeedback(id: string, body: FeedbackReview): Promise<Feedba
   })
 }
 
-export function reviewFeedbackBulk(body: FeedbackReview): Promise<FeedbackItem[]> {
+export function reviewFeedbackBulk(
+  body: FeedbackReview,
+): Promise<FeedbackItem[]> {
   return fetchJson<FeedbackItem[]>(`${API_BASE}/review/bulk`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

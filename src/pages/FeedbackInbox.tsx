@@ -17,7 +17,9 @@ export default function FeedbackInbox({ setPage }: Props) {
   const [loading, setLoading] = useState(false)
   const [selected, setSelected] = useState<Set<string>>(new Set())
   const [ownerId] = useState('owner-1')
-  const [filterStatus, setFilterStatus] = useState<FeedbackStatus | ''>('pending')
+  const [filterStatus, setFilterStatus] = useState<FeedbackStatus | ''>(
+    'pending',
+  )
   const [rejectNote, setRejectNote] = useState('')
 
   const load = useCallback(() => {
@@ -82,7 +84,9 @@ export default function FeedbackInbox({ setPage }: Props) {
       <div className="flex items-center gap-3">
         <select
           value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value as FeedbackStatus | '')}
+          onChange={(e) =>
+            setFilterStatus(e.target.value as FeedbackStatus | '')
+          }
           className="border-border bg-background rounded-lg border px-3 py-2 text-sm"
         >
           <option value="">All</option>
@@ -90,7 +94,12 @@ export default function FeedbackInbox({ setPage }: Props) {
           <option value="accepted">Accepted</option>
           <option value="rejected">Rejected</option>
         </select>
-        <Button size="sm" variant="outline" onClick={() => void load()} disabled={loading}>
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={() => void load()}
+          disabled={loading}
+        >
           Refresh
         </Button>
         {selected.size > 0 && (
@@ -111,7 +120,11 @@ export default function FeedbackInbox({ setPage }: Props) {
               className="border-border bg-background w-40 rounded-lg border px-2 py-1.5 text-xs"
               placeholder="Rejection reason"
             />
-            <Button size="sm" variant="destructive" onClick={() => doAction('reject')}>
+            <Button
+              size="sm"
+              variant="destructive"
+              onClick={() => doAction('reject')}
+            >
               Reject selected
             </Button>
           </div>
@@ -131,7 +144,7 @@ export default function FeedbackInbox({ setPage }: Props) {
         {items.map((item) => (
           <li
             key={item.feedback_id}
-            className={`border-border rounded-xl border p-4 text-sm space-y-1 ${selected.has(item.feedback_id) ? 'bg-accent' : 'bg-card'}`}
+            className={`border-border space-y-1 rounded-xl border p-4 text-sm ${selected.has(item.feedback_id) ? 'bg-accent' : 'bg-card'}`}
           >
             <div className="flex items-center gap-2">
               <input
@@ -143,13 +156,17 @@ export default function FeedbackInbox({ setPage }: Props) {
               <span className="text-muted-foreground text-xs">
                 {new Date(item.created_at).toLocaleString()}
               </span>
-              <span className="text-xs font-medium">by {item.submitter_id}</span>
+              <span className="text-xs font-medium">
+                by {item.submitter_id}
+              </span>
               <span
                 className={`rounded-full px-2 py-0.5 text-xs font-medium ${STATUS_COLORS[item.status]}`}
               >
                 {item.status}
               </span>
-              <span className="text-muted-foreground ml-auto text-xs">{item.source}</span>
+              <span className="text-muted-foreground ml-auto text-xs">
+                {item.source}
+              </span>
             </div>
             <p>
               <span className="font-medium">Strain:</span> {item.query_strain}
@@ -168,7 +185,7 @@ export default function FeedbackInbox({ setPage }: Props) {
               </p>
             )}
             {item.review_note && (
-              <p className="text-muted-foreground border-t border-border pt-2 text-xs">
+              <p className="text-muted-foreground border-border border-t pt-2 text-xs">
                 Note: {item.review_note}
               </p>
             )}

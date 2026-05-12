@@ -34,7 +34,14 @@ export default function FeedbackForm({ setPage }: Props) {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
     const finalSuggested = isOther ? otherSpecies : suggested
-    if (!strain || !predicted || !finalSuggested || !description || !submitterId) return
+    if (
+      !strain ||
+      !predicted ||
+      !finalSuggested ||
+      !description ||
+      !submitterId
+    )
+      return
     setLoading(true)
     setResult(null)
     submitFeedback({
@@ -160,7 +167,7 @@ export default function FeedbackForm({ setPage }: Props) {
           {loading ? 'Submitting…' : 'Submit Feedback'}
         </Button>
         {result && (
-          <p className="text-muted-foreground rounded-lg bg-muted px-3 py-2 text-sm">
+          <p className="text-muted-foreground bg-muted rounded-lg px-3 py-2 text-sm">
             {result}
           </p>
         )}
